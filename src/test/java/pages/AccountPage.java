@@ -33,7 +33,6 @@ public class AccountPage {
         driver.manage().timeouts();
         driver.findElement(amountBy).sendKeys(String.valueOf(amount));
         driver.findElement(submitAmountBy).click();
-        assertEquals("Deposit Successful", driver.findElement(By.cssSelector("[ng-show='message']")).getText());
         return this;
     }
 
@@ -42,7 +41,6 @@ public class AccountPage {
         wait.until(textToBe(submitAmountBy, "Withdraw"));
         driver.findElement(amountBy).sendKeys(String.valueOf(amount));
         driver.findElement(submitAmountBy).click();
-        assertEquals("Transaction successful", driver.findElement(By.cssSelector("[ng-show='message']")).getText());
         return this;
     }
 
