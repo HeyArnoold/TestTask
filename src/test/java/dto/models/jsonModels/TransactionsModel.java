@@ -1,4 +1,4 @@
-package dto.models;
+package dto.models.jsonModels;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,10 +7,6 @@ public class TransactionsModel {
 	private SectionModel sectionModel1;
 	@SerializedName("2")
 	private SectionModel sectionModel2;
-
-	public SectionModel getSectionModel1() {
-		return sectionModel1;
-	}
 
 	public void setSectionModel1(SectionModel sectionModel1) {
 		this.sectionModel1 = sectionModel1;

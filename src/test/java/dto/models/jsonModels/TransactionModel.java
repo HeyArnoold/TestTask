@@ -1,4 +1,4 @@
-package dto.models;
+package dto.models.jsonModels;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,7 +6,7 @@ public class TransactionModel {
 	@SerializedName("date")
 	private String date;
 	@SerializedName("amount")
-	private int amount;
+	private long amount;
 	@SerializedName("success")
 	private boolean success;
 	@SerializedName("deposit")
@@ -24,11 +24,11 @@ public class TransactionModel {
 		this.date = date;
 	}
 
-	public int getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 

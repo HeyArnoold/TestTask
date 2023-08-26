@@ -1,4 +1,4 @@
-package dto.common;
+package utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

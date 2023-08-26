@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class TestBase {
 
@@ -24,7 +24,7 @@ public class TestBase {
     void setupTest() throws MalformedURLException {
         driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
     }
 
     @AfterEach
