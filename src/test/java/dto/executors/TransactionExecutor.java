@@ -8,12 +8,14 @@ import org.openqa.selenium.WebDriver;
 import utils.CsvHelper;
 import utils.LocalStorage;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static utils.AllureAttachment.attachFile;
 import static utils.Constants.TIME_PATTERN_TIME_LOCAL_STORAGE;
 import static utils.Constants.TIME_PATTERN_TIME_REPORT;
 
@@ -35,6 +37,7 @@ public class TransactionExecutor {
             LocalDateTime dateTime = LocalDateTime.parse(model.getDate(), dtf);
             csvModels.add(new TransactionsCsvModel(dateTime.format(newDtf), model.getAmount(), model.getType()));
         }
-        csvHelper.createFileFromListObjects(csvModels, "localStorage");
+        File file = csvHelper.createFileFromListObjects(csvModels, "localStorageReport");
+        attachFile(file.getName(), "csv", "csv", file);
     }
 }
