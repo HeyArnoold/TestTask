@@ -2,9 +2,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import utils.AllureAttachment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,6 +32,7 @@ public class TestBase {
 
     @AfterEach
     void teardown() {
+        AllureAttachment.attachImage("screenshot", ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE));
         driver.quit();
     }
 }

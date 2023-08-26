@@ -1,8 +1,9 @@
 package pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static utils.Constants.URL_LOGIN_PAGE;
 
 public class LoginPage extends CommonPage{
     private WebDriver driver;
@@ -17,7 +18,7 @@ public class LoginPage extends CommonPage{
     private String xPathDropDownName = "//*[contains(text(),'%s')]";
 
     public LoginPage openPage() {
-        driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login");
+        driver.get(URL_LOGIN_PAGE);
         return this;
     }
 
