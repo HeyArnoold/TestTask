@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.CsvHelper;
 
+import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static utils.AllureAttachment.attachFile;
 import static utils.Constants.TIME_PATTERN_TIME_ON_PAGE;
 import static utils.Constants.TIME_PATTERN_TIME_REPORT;
 
@@ -40,8 +42,8 @@ public class TransactionsPage {
     }
 
     public void createCsvReportFromPage() {
-        var dtf = DateTimeFormatter.ofPattern(TIME_PATTERN_TIME_ON_PAGE, Locale.ENGLISH);
-        var newDtf = DateTimeFormatter.ofPattern(TIME_PATTERN_TIME_REPORT, new Locale("ru"));
+        var patternPage = DateTimeFormatter.ofPattern(TIME_PATTERN_TIME_ON_PAGE, Locale.ENGLISH);
+        var patternReport = DateTimeFormatter.ofPattern(TIME_PATTERN_TIME_REPORT, new Locale("ru"));
 
         List<TransactionsCsvModel> csvList = new ArrayList<>();
         List<WebElement> list = driver.findElements(transactionBy);
@@ -49,11 +51,12 @@ public class TransactionsPage {
         List<WebElement> elementsAmount = driver.findElements(amountTransactionBy);
         List<WebElement> elementsType = driver.findElements(typeTransactionBy);
         for (int i = 0; i < list.size(); i++) {
-            LocalDateTime dateTime = LocalDateTime.parse(elementsDate.get(i).getText(), dtf);
-            long sum = Long.parseLong(elementsAmount.get(i).getText());
-            String type = elementsType.get(i).getText();
-            csvList.add(new TransactionsCsvModel(dateTime.format(newDtf), sum, type));
+            LocalDateTime dateTime = LocalDateTime.parse(elementsDate.get(i).getText(), patternPage);
+
+            csvList.add(new TransactionsCsvModel(dateTime.format(patternReport),
+                    Long.parseLong(elementsAmount.get(i).getText()), elementsType.get(i).getText()));
         }
-        csvHelper.createFileFromListObjects(csvList, "page");
+        File file = csvHelper.createFileFromListObjects(csvList, "pageReport");
+        attachFile(file.getName(), "csv", "csv", file);
     }
 }
