@@ -12,11 +12,11 @@ import utils.AllureAttachment;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class TestBase {
 
-    WebDriver driver;
-    private ChromeOptions chromeOptions = new ChromeOptions();
+    protected WebDriver driver;
 
     @BeforeAll
     static void setupBrowser() {
@@ -25,14 +25,29 @@ public class TestBase {
 
     @BeforeEach
     void setupTest() throws MalformedURLException {
-        driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
+        driver = setUpSeleniumGrid();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
     }
 
     @AfterEach
     void teardown() {
-        AllureAttachment.attachImage("screenshot", ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE));
+        AllureAttachment.attachImage("screenshot", ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE));
         driver.quit();
     }
+
+    private RemoteWebDriver setUpSeleniumGrid() throws MalformedURLException {
+        return new RemoteWebDriver(new URL("http://localhost:4444"), new ChromeOptions());
+    }
+
+    private RemoteWebDriver setUpSelenoid() throws MalformedURLException {
+        ChromeOptions options = new ChromeOptions();
+        options.setCapability("selenoid:options", new HashMap<String, Object>() {{
+            put("sessionTimeout", "2m");
+            put("enableVideo", true);
+            put("enableVNC", true);
+        }});
+        return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+    }
+
 }

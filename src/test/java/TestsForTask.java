@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.AccountPage;
 import pages.LoginPage;
@@ -12,6 +13,7 @@ import static dto.executors.TransactionExecutor.createReportCsvLocalStorage;
 
 public class TestsForTask extends TestBase {
 
+    @DisplayName("Тест с PageObject")
     @Test
     public void testWithPageObject() throws InterruptedException {
         long amount = Helper.getFibonacciValueByIndex(LocalDate.now().getDayOfMonth()  + 1);
@@ -35,6 +37,7 @@ public class TestsForTask extends TestBase {
         createReportCsvLocalStorage(driver);
     }
 
+    @DisplayName("Тест со степами")
     @Test
     public void testWithSteps() throws InterruptedException {
         WebSteps webSteps = new WebSteps(driver);
