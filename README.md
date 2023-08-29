@@ -61,7 +61,7 @@
 ### :joystick: Параметры запуска
 
 > <code>Selenoid</code> – для запуска в удаленном браузере использовать метод setUpSelenoid класса TestBase.
-> Должен быть установлен Docker с контейнером Selenoid на хосту (_по умолчанию порт - <code>:4444</code>_)
+> Должен быть установлен Docker с контейнером Selenoid на хосту (_по умолчанию порт - <code>:4444/wd/hub</code>_)
 > 
 > <code>Selenium Grid</code> – для запуска сессии в Selenium Grid локально необходимо использовать метод setUpSeleniumGrid.
 > Должен быть установлен Selenium Grid на хосту (_по умолчанию порт - <code>:4444</code>_)
