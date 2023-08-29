@@ -66,7 +66,7 @@
 > <code>Selenium Grid</code> – для запуска сессии в Selenium Grid локально необходимо использовать метод setUpSeleniumGrid.
 > 
 >  Для запуска использовать команду в терминале Weindows <code>java -jar "path до selenium-server" standalone --selenium-manager true</code>
-> selenium-server-4.11.0.jar находится в корневой пакете
+> selenium-server-4.11.0.jar находится в корневом пакете
 
 ### :joystick: Формирование отчета Allure
 
