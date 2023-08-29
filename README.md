@@ -62,9 +62,10 @@
 
 > <code>Selenoid</code> – для запуска в удаленном браузере использовать метод setUpSelenoid класса TestBase.
 > Должен быть установлен Docker с контейнером Selenoid на хосту (_по умолчанию порт - <code>:4444/wd/hub</code>_)
-> 
+
 > <code>Selenium Grid</code> – для запуска сессии в Selenium Grid локально необходимо использовать метод setUpSeleniumGrid.
-> Для запуска использовать команду в терминале Weindows <code>java -jar "path до selenium-server" standalone --selenium-manager true</code>
+> 
+>  Для запуска использовать команду в терминале Weindows <code>java -jar "path до selenium-server" standalone --selenium-manager true</code>
 > selenium-server-4.11.0.jar находится в корневой пакете
 
 ### :joystick: Формирование отчета Allure
