@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import static utils.Constants.URL_LOGIN_PAGE;
 
-public class LoginPage extends CommonPage{
+public class LoginPage {
     private WebDriver driver;
 
     public LoginPage(WebDriver driver) {

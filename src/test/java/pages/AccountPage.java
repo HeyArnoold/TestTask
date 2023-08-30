@@ -49,13 +49,7 @@ public class AccountPage {
         return new TransactionsPage(driver);
     }
 
-    public AccountPage checkBalance(long amount) {
-        assertEquals(String.valueOf(amount), driver.findElement(balanceBy).getText());
-        return this;
-    }
-
-    public AccountPage checkAccountName(String name) {
-        assertEquals(name, driver.findElement(accountNameBy).getText());
-        return this;
+    public String getBalance() {
+        return driver.findElement(balanceBy).getText();
     }
 }

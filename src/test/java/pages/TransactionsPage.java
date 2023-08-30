@@ -1,29 +1,18 @@
 package pages;
 
-import dto.models.TransactionsCsvModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.CsvHelper;
 
-import java.io.File;
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static utils.AllureAttachment.attachFile;
-import static utils.Constants.TIME_PATTERN_ON_PAGE;
-import static utils.Constants.TIME_PATTERN_REPORT;
+import java.util.stream.Collectors;
 
 public class TransactionsPage {
     private WebDriver driver;
     private WebDriverWait wait;
-    private static CsvHelper<TransactionsCsvModel> csvHelper = new CsvHelper();
 
     public TransactionsPage(WebDriver driver) {
         this.driver = driver;
@@ -35,28 +24,25 @@ public class TransactionsPage {
     By amountTransactionBy = By.xpath("//tr[@class='ng-scope']/td[@class='ng-binding'][2]");
     By typeTransactionBy = By.xpath("//tr[@class='ng-scope']/td[@class='ng-binding'][3]");
 
-    public TransactionsPage checkTransactions(int expectedSize) {
-        List<WebElement> list = driver.findElements(transactionBy);
-        assertEquals(expectedSize, list.size());
-        return this;
+    public int getCountTransactionsOnPage() {
+        return driver.findElements(transactionBy).size();
     }
 
-    public void createCsvReportFromPage() {
-        var patternPage = DateTimeFormatter.ofPattern(TIME_PATTERN_ON_PAGE, Locale.ENGLISH);
-        var patternReport = DateTimeFormatter.ofPattern(TIME_PATTERN_REPORT, new Locale("ru"));
-
-        List<TransactionsCsvModel> csvList = new ArrayList<>();
-        List<WebElement> list = driver.findElements(transactionBy);
+    public List<String> getTransactionDates() {
+        wait.until(ExpectedConditions.numberOfElementsToBe(dateInTransactionBy, getCountTransactionsOnPage()));
         List<WebElement> elementsDate = driver.findElements(dateInTransactionBy);
-        List<WebElement> elementsAmount = driver.findElements(amountTransactionBy);
-        List<WebElement> elementsType = driver.findElements(typeTransactionBy);
-        for (int i = 0; i < list.size(); i++) {
-            LocalDateTime dateTime = LocalDateTime.parse(elementsDate.get(i).getText(), patternPage);
+        return elementsDate.stream().map(WebElement::getText).collect(Collectors.toList());
+    }
 
-            csvList.add(new TransactionsCsvModel(dateTime.format(patternReport),
-                    Long.parseLong(elementsAmount.get(i).getText()), elementsType.get(i).getText()));
-        }
-        File file = csvHelper.createFileFromListObjects(csvList, "pageReport");
-        attachFile(file.getName(), "csv", "csv", file);
+    public List<String> getTransactionAmounts() {
+        wait.until(ExpectedConditions.numberOfElementsToBe(amountTransactionBy, getCountTransactionsOnPage()));
+        List<WebElement> elementsAmounts = driver.findElements(amountTransactionBy);
+        return elementsAmounts.stream().map(WebElement::getText).collect(Collectors.toList());
+    }
+
+    public List<String> getTransactionTypes() {
+        wait.until(ExpectedConditions.numberOfElementsToBe(typeTransactionBy, getCountTransactionsOnPage()));
+        List<WebElement> elementsType = driver.findElements(typeTransactionBy);
+        return elementsType.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 }
