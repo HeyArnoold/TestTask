@@ -36,7 +36,6 @@
 <img width="6%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg">
 <img width="6%" title="Java" src="images/logo/Java.svg">
 <img width="6%" title="Selenium" src="images/logo/selenium.png">
-<img width="6%" title="Selenoid" src="images/logo/Selenoid.svg">
 <img width="6%" title="Allure Report" src="images/logo/Allure_Report.svg">
 <img width="6%" title="Gradle" src="images/logo/Gradle.svg">
 <img width="6%" title="JUnit5" src="images/logo/JUnit5.svg">
@@ -45,8 +44,6 @@
 </p>
 
 > В данном проекте автотесты написаны на <code>Java</code> с использованием фреймворка <code>Selenium</code> для UI-тестов.
->
-> <code>Selenoid</code> выполняет запуск браузеров в контейнерах <code>Docker</code>.
 >
 > <code>Selenium Grid</code> выполняет запуск браузеров локально <code>Local</code>.
 >
@@ -59,10 +56,6 @@
 [Вернуться к содержанию](#-содержание) :top:
 
 ### :joystick: Параметры запуска
-
-> <code>Selenoid</code> – для запуска в удаленном браузере использовать метод setUpSelenoid класса TestBase.
-> Должен быть установлен Docker с контейнером Selenoid на хосту (_по умолчанию порт - <code>:4444/wd/hub</code>_)
-
 > <code>Selenium Grid</code> – для запуска сессии в Selenium Grid локально необходимо использовать метод setUpSeleniumGrid.
 > 
 >  Для запуска использовать команду в терминале Weindows <code>java -jar "path до selenium-server" standalone --selenium-manager true</code>
@@ -149,15 +142,5 @@ allure serve build/allure-results
 > + Страница <code>Packages</code> – на этой странице тесты сгруппированы по пакетам, в которых лежат тестовые классы.
 >
 > </details>
-
-[Вернуться к содержанию](#-содержание) :top:
-
-## <img width="4%" title="Selenoid" src="images/logo/Selenoid.svg"> Пример запуска теста в Selenoid
-
-> К каждому тесту в отчете прилагается видео. Одно из таких видео представлено ниже.
-
-<p align="center">
-<img title="Selenoid Video" src="images/gif/selenoid_video.gif">
-</p>
 
 [Вернуться к содержанию](#-содержание) :top:

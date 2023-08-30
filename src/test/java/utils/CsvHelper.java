@@ -3,7 +3,7 @@ package utils;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import dto.models.csvModels.TransactionsCsvModel;
+import dto.models.TransactionsCsvModel;
 
 import java.io.File;
 import java.io.FileWriter;

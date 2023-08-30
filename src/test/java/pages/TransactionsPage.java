@@ -1,6 +1,6 @@
 package pages;
 
-import dto.models.csvModels.TransactionsCsvModel;
+import dto.models.TransactionsCsvModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,8 +17,8 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static utils.AllureAttachment.attachFile;
-import static utils.Constants.TIME_PATTERN_TIME_ON_PAGE;
-import static utils.Constants.TIME_PATTERN_TIME_REPORT;
+import static utils.Constants.TIME_PATTERN_ON_PAGE;
+import static utils.Constants.TIME_PATTERN_REPORT;
 
 public class TransactionsPage {
     private WebDriver driver;
@@ -42,8 +42,8 @@ public class TransactionsPage {
     }
 
     public void createCsvReportFromPage() {
-        var patternPage = DateTimeFormatter.ofPattern(TIME_PATTERN_TIME_ON_PAGE, Locale.ENGLISH);
-        var patternReport = DateTimeFormatter.ofPattern(TIME_PATTERN_TIME_REPORT, new Locale("ru"));
+        var patternPage = DateTimeFormatter.ofPattern(TIME_PATTERN_ON_PAGE, Locale.ENGLISH);
+        var patternReport = DateTimeFormatter.ofPattern(TIME_PATTERN_REPORT, new Locale("ru"));
 
         List<TransactionsCsvModel> csvList = new ArrayList<>();
         List<WebElement> list = driver.findElements(transactionBy);
