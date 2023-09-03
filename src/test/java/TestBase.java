@@ -58,6 +58,6 @@ public class TestBase {
         }});
         options.addArguments("--start-maximized");
         isSelenoid = true;
-        return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+        return new RemoteWebDriver(new URL("http://192.168.0.111:4444/wd/hub"), options);
     }
 }
