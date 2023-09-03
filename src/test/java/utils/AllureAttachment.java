@@ -34,7 +34,7 @@ public class AllureAttachment {
     }
 
     public static void attachVideoSelenoid(String sessionId) {
-        String videoUrl = String.format("%s%s.mp4", "http://localhost:4444/video/", sessionId);
+        String videoUrl = String.format("%s%s.mp4", "http://192.168.0.111:4444/video/", sessionId);
         await()
                 .atMost(10, SECONDS)
                 .pollInterval(100, MILLISECONDS)
